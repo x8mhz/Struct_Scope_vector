@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <direct.h>
 
 using namespace std;
 
@@ -55,7 +56,7 @@ void Teste::Salvar()
 	for (int i = 0; i < usuario.size(); i++)
 	{
 		string id = usuario[i].CPFCliente;
-		ofstream arq("CPF_" + id + ".txt");
+		ofstream arq("C:\\FR_INFORMATICA\\CPF_" + id + ".txt");
 		if (arq.is_open())
 		{
 			arq << endl << " ---------------FR INFORMÁTICA--------------- " << endl << endl;
@@ -64,7 +65,7 @@ void Teste::Salvar()
 			arq << "   CPF: " << usuario[i].CPFCliente << endl;
 			arq << "E-MAIL: " << usuario[i].emailCliente << endl << endl;
 			arq << " -------------------------------------------- " << endl;
-
+			_mkdir("c:");
 			arq.flush();
 			arq.close();
 		}
@@ -96,6 +97,8 @@ void Teste::Mostrar()
 int main()
 {
 	setlocale(LC_ALL, "Portuguese");
+
+	_mkdir("c:/FR_INFORMATICA");
 
 	Teste *t = new Teste();
 	string nome, sobrenome, CPF, email;
