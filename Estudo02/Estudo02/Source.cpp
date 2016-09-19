@@ -20,10 +20,10 @@ public:
 private:
 	struct PERFIL
 	{
-		string nomeCliente;
-		int idadeCliente;
-		string CPFCliente;
-		string emailCliente;
+		string nomeCliente = "";
+		int idadeCliente = 0;
+		string CPFCliente = "";
+		string emailCliente = "";
 	};
 
 	vector<PERFIL> usuario;
@@ -80,16 +80,23 @@ void Teste::Salvar()
 void Teste::Mostrar()
 {
 	cout << endl << " ---------------FR INFORMÁTICA--------------- " << endl << endl;
-	for (int i = 0; i < usuario.size(); i++)
+	if (usuario.empty())
 	{
-		cout << "  NOME: " << usuario[i].nomeCliente << endl;
-		cout << " IDADE: " << usuario[i].idadeCliente << endl;
-		cout << "   CPF: " << usuario[i].CPFCliente << endl;
-		cout << " EMAIL: " << usuario[i].emailCliente << endl << endl;
-
-		if (usuario.size() > 1)
+		cout << "Nenhum usuário para ser cadastrado!" << endl << endl;
+	}
+	else
+	{
+		for (int i = 0; i < usuario.size(); i++)
 		{
-			cout << " -------------------------------------------- " << endl << endl;
+			cout << "  NOME: " << usuario[i].nomeCliente << endl;
+			cout << " IDADE: " << usuario[i].idadeCliente << endl;
+			cout << "   CPF: " << usuario[i].CPFCliente << endl;
+			cout << " EMAIL: " << usuario[i].emailCliente << endl << endl;
+
+			if (usuario.size() > 1)
+			{
+				cout << " -------------------------------------------- " << endl << endl;
+			}
 		}
 	}
 }
@@ -135,8 +142,15 @@ int main()
 					cout << " E-MAIL: ";
 					getline(cin, email);
 
-					t->Perguntar(nome, idade, CPF, email);
-
+					if (CPF == "")
+					{
+						cout << endl << "CPF é um campo obrigatório!" << endl << endl;
+						system("PAUSE");
+					}
+					else
+					{
+						t->Perguntar(nome, idade, CPF, email);
+					}	
 				}
 				catch (exception)
 				{
